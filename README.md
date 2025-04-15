@@ -5,7 +5,7 @@ This repository contains the code for the **FPI @ ICLR (2025, oral) & AABI 2025 
 Below as a teaser you can see a (marginal) view on the approximate posterior obtained by sampling ...
 
 <p align="center">
-    <img src="data/fireball/mile_air/marginal_densities/fig1.png" alt="Flowchart" style="width: 40%;">
+    <img src="data/fireball/mile_air/marginal_densities/fig1.png" alt="Flowchart" style="width: 50%;">
 </p>
 
 Got your attention? Then take a closer look at the paper!
@@ -49,7 +49,7 @@ The individual experiments can be executed in parallel across CPU or GPU cores (
 python python -m src.sai -d 12 -c experiments/configs/permuted_warmstarts.yaml
 ```
 
-When a whole grid of experiments is to be run, the `-s` argument providing a the grid is used:
+When a whole grid of experiments is to be run, the `-s` argument provides a way to specify a file containing the grid to be used:
 
 ```bash
 python -m src.sai -d 10 -c experiments/configs/mile_mean_regr_uci.yaml -s experiments/configs/tabular_search.yaml
