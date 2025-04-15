@@ -64,7 +64,7 @@ The results in the respective subfolder of `results/` contain:
 
 **Utils:** We also provide utility CLI tools that 1) aggregate multiple experiments (`experiments/pool_results.py`) and 2) save a subset of traces for large experiments (`experiments/save_traces.py`).
 
-> **Note:** Much of the SAI code is based/inspired on the original [MILE codebase](https://anonymous.4open.science/r/MILE-1CC1/README.md) (Sommer et al., 2025).
+> **Note:** Much of the SAI code is based/inspired on the original [MILE codebase](https://github.com/EmanuelSommer/MILE) (Sommer et al., 2025).
 
 ## Figures
 
