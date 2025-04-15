@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = "Submission code for the paper: Approximate Posteriors in Neural Networks: A Sampling Perspective"
+authors = [
+    "Emanuel Sommer <emanuel.sommer@lmu.de>",
+    "Julius Kobialka <j.kobialka@lmu.de>"
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jax = "0.4.33"
+matplotlib = "^3.9.3"
+plotnine = "^0.14.3"
+pandas = "^2.2.3"
+ipykernel = "^6.29.5"
+scikit-misc = "^0.5.1"
+jinja2 = "^3.1.5"
+llvmlite = "0.43.0"
+numba = "0.60.0"
+datashader = "^0.16.3"
+pyarrow = "^19.0.0"
+dask = "2024.11.2"
+holoviews = "^1.20.0"
+seaborn = "^0.13.2"
+optax = "^0.2.4"
+flax = "^0.10.2"
+numpyro = "^0.16.1"
+blackjax = "1.2.2"
+dataserious = {git = "https://github.com/Noza23/dataserious.git", extras = ["yaml"]}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

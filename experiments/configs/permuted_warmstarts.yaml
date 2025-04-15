@@ -1,0 +1,79 @@
+saving_dir: results/permuted_warmstarts
+experiment_name: small_permuted_warmstarts_bikesharing_mean_regr
+data:
+  path: data/bikesharing.data
+  source: local
+  data_type: tabular
+  task: mean_regr
+  target_column: null
+  target_len: 1
+  features: null
+  datapoint_limit: null
+  flatten: false
+  normalize: true
+  train_split: 0.7
+  valid_split: 0.1
+  test_split: 0.2
+model:
+  model: FCN
+  hidden_structure:
+  - 16
+  - 16
+  - 16
+  - 1
+  activation: relu
+  use_bias: true
+training:
+  warmstart:
+    include: true
+    optimizer_config:
+      name: adamw
+      parameters:
+        learning_rate: 0.01
+        weight_decay: 0.005
+    warmstart_exp_dir: null
+    max_epochs: 200
+    batch_size: 64
+    patience: 10
+    permutation_warmstart: true
+  sampler:
+    name: nuts
+    epoch_wise_sampling: false
+    params_frozen: []
+    batch_size: null
+    burn_in: 0
+    warmup_steps: 100
+    n_chains: 12
+    n_samples: 10000
+    use_warmup_as_init: true
+    n_thinning: 1
+    diagonal_preconditioning: false
+    desired_energy_var_start: 0.0005
+    desired_energy_var_end: 0.0001
+    trust_in_estimate: 1.5
+    num_effective_samples: 100
+    step_size_init: 0.01
+    step_size: 0.0001
+    mdecay: 0.05
+    n_integration_steps: 1
+    momentum_resampling: 0.0
+    temperature: 1.0
+    running_avg_factor: 0.0
+    keep_warmup: false
+    prior_config:
+      name: StandardNormal
+      parameters: {}
+    scheduler_config:
+      name: null
+      exploration: 0.25
+      target_lr: 0.0
+      n_cycles: 4
+rng: 42
+logging: true
+logging_level: INFO
+evaluations:
+- PredSaver
+- PredPerf
+- Lppd
+evaluation_args:
+  samples_batch_size: 100

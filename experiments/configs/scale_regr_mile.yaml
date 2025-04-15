@@ -1,0 +1,64 @@
+saving_dir: 'results/scale_regr/'
+experiment_name: 'tabular_regr_mile_air'
+data:
+  path: 'data/airfoil.data'
+  source: 'local'
+  data_type: 'tabular'
+  task: 'regr'
+  target_column: null
+  target_len: 1
+  features: null
+  datapoint_limit: null
+  normalize: true
+  train_split: 0.7
+  valid_split: 0.1
+  test_split: 0.2
+model:
+  model: FCN
+  hidden_structure:
+   - 16
+   - 16
+   - 16
+   - 16
+   - 2
+  activation: 'relu'
+  use_bias: true
+training:
+  warmstart:
+    include: true
+    optimizer_config:
+      name: 'adamw'
+      parameters: {'learning_rate': 0.01, 'weight_decay': 0.005}
+    warmstart_exp_dir: null
+    max_epochs: 200
+    batch_size: 64
+    patience: 10
+  sampler:
+    name: 'mclmc'
+    warmup_steps: 50000
+    n_chains: 10000
+    n_samples: 10000
+    use_warmup_as_init: true
+    n_thinning: 10
+    desired_energy_var_start: 0.5
+    desired_energy_var_end: 0.1
+    diagonal_preconditioning: false
+    trust_in_estimate: 1.5
+    num_effective_samples: 100
+    step_size_init: 0.01
+    keep_warmup: false
+    prior_config:
+      name: 'StandardNormal'
+      parameters: {}
+rng: 42
+logging: true
+logging_level: INFO
+evaluations:
+  - Predict
+  - LppdCum
+  - PredPerf
+  - Lppd
+evaluation_args:
+  phases: [ensemble_initialization, sampling]
+  n_orderings: 5
+  samples_batch_size: 20

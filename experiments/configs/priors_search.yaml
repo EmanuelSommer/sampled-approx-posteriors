@@ -1,0 +1,22 @@
+data:
+  path:
+   - 'data/airfoil.data'
+   - 'data/bikesharing.data'
+   - 'data/energy.data'
+model:
+  hidden_structure:
+   - [16, 1]
+   - [16, 16, 1]
+   - [16, 16, 16, 1]
+   - [16, 16, 16, 16, 1]
+training:
+  sampler:
+    prior_config:
+      parameters:
+      - {loc: 0.0, scale: 10.0}
+      - {loc: 0.0, scale: 5.0}
+      - {loc: 0.0, scale: 2.0}
+      - {loc: 0.0, scale: 1.0}
+      - {loc: 0.0, scale: 0.5}
+      - {loc: 0.0, scale: 0.2}
+      - {loc: 0.0, scale: 0.1}

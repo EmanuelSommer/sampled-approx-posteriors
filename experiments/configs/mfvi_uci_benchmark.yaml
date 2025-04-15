@@ -1,0 +1,37 @@
+# --- Experiment configuration --- #
+experiment_name: mfvi_benchmark
+
+# --- MFVI configuration --- #
+sigma_obs: 0.1
+prior_scale: 1.0
+
+# --- MLP configuration --- #
+depth: 3
+width: 16
+
+# --- MLP and CNN configuration --- #
+activation: relu # relu, sigmoid, tanh
+use_bias: true # true, false
+
+# --- Dataset configuration --- #
+dataset_list:
+   - airfoil.data
+   - concrete.data
+   - energy.data
+   - bikesharing.data
+
+test_size: 0.2 # ignored for the classification datasets as they have a fixed test set
+val_size: 0.1
+
+# --- MAP training configuration --- #
+epochs: 5000 # 10-100 for classification, 10000 for regression
+steps: all # all, debug (limits training to 100 steps)
+lr: 0.005 # 0.001 for classification, 0.005 for regression
+optim: adamw # optax tx
+val_loss_stopping: false
+
+# --- Repetitions configuration --- #
+seeds:
+  - 1
+  - 2
+  - 3

@@ -1,0 +1,58 @@
+saving_dir: 'results/figures/'
+experiment_name: 'nuts_vs_mvfi'
+data:
+  path: 'data/synthetic_regression_1x.data'
+  source: 'local'
+  data_type: 'tabular'
+  task: 'mean_regr'
+  target_column: null
+  target_len: 1
+  features: null
+  datapoint_limit: 200
+  normalize: true
+  train_split: 0.7
+  valid_split: 0.1
+  test_split: 0.2
+model:
+  model: FCN
+  hidden_structure:
+   - 1
+   - 1
+  activation: 'identity'
+  use_bias: false
+training:
+  warmstart:
+    include: true
+    optimizer_config:
+      name: 'adamw'
+      parameters: {'learning_rate': 0.01, 'weight_decay': 0.005}
+    warmstart_exp_dir: null
+    max_epochs: 200
+    batch_size: 64
+    patience: 10
+    permutation_warmstart: false
+  sampler:
+    name: 'nuts'
+    warmup_steps: 100
+    n_chains: 12
+    n_samples: 1000
+    use_warmup_as_init: true
+    n_thinning: 1
+    desired_energy_var_start: 0.0005
+    desired_energy_var_end: 0.0001
+    trust_in_estimate: 1.5
+    num_effective_samples: 100
+    step_size_init: 0.01
+    keep_warmup: false
+    prior_config:
+      name: 'StandardNormal'
+      parameters: {}
+rng: 42
+logging: true
+logging_level: INFO
+evaluations:
+  - "PredSaver"
+  - "PredPerf"
+  - "Lppd"
+evaluation_args:
+  samples_batch_size: 1000

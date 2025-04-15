@@ -1,0 +1,41 @@
+# --- Experiment configuration --- #
+experiment_name: laplace_benchmark
+
+# --- LA configuration --- #
+subset_of_params: !SubParams last_layer # all, last_layer
+task: !Task regression # regression
+hessian_factorization: !Fac full
+predictive_approximation: !PredApp closed_form
+aleatoric_var: 0.1 # 'mle' or float
+
+
+# --- MLP configuration --- #
+depth: 3
+width: 16
+
+# --- MLP and CNN configuration --- #
+activation: relu # relu, sigmoid, tanh
+use_bias: true # true, false
+
+# --- Dataset configuration --- #
+dataset_list:
+   - airfoil.data
+   - concrete.data
+   - energy.data
+   - bikesharing.data
+
+test_size: 0.2
+val_size: 0.1
+
+# --- MAP training configuration --- #
+epochs: 10000
+steps: all
+lr: 0.005
+optim: adamw # optax tx
+val_loss_stopping: false
+
+# --- Repetitions configuration --- #
+seeds:
+  - 1
+  - 2
+  - 3
